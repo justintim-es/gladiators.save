@@ -3,12 +3,14 @@ import 'package:ecdsa/ecdsa.dart';
 import 'package:elliptic/elliptic.dart';
 import 'package:gladiators/gladiators.dart';
 import 'package:gladiators/models/gladiator.dart';
-class ObstructionumNumerus {
-  final List<int> numerus;
-  Map<String, dynamic> toJson() => {
+class ObstructionumNumerus extends Serializable {
+  List<int>? numerus;
+  Map<String, dynamic> asMap() => {
     'numerus': numerus
   };
-  ObstructionumNumerus.fromJson(Map<String, dynamic> jsoschon): numerus = List<int>.from(jsoschon['numerus'] as List<dynamic>);
+  void readFromMap(Map<String, dynamic> map) {
+    numerus = List<int>.from(map['numerus'] as List<dynamic>);
+  }
 }
 class KeyPair {
   late String private;
