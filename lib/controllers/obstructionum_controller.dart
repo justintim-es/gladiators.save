@@ -282,6 +282,102 @@ class ObstructionumController extends ResourceController {
       return {
         "200": APIResponse.schema("Forked the chain with 1 block/Removed one block", APISchemaObject.object({
           "message": APISchemaObject.string(), 
+          "obstructionum": APISchemaObject.object({
+          "probationem": APISchemaObject.string(),
+          "interioreObstructionum": APISchemaObject.object({
+                'generare': APISchemaObject.string(),
+                'obstructionumDifficultas': APISchemaObject.integer(),
+                'divisa': APISchemaObject.number(),
+                'propterDifficultas': APISchemaObject.integer(),
+                'liberDifficultas': APISchemaObject.integer(),
+                'fixumDifficultas': APISchemaObject.integer(),
+                'indicatione': APISchemaObject.number(),
+                'nonce': APISchemaObject.integer(),
+                'summaObstructionumDifficultas': APISchemaObject.integer(),
+                'forumCap': APISchemaObject.integer(),
+                'liberForumCap': APISchemaObject.integer(),
+                'fixumForumCap': APISchemaObject.integer(),
+                'obstructionumNumerus': APISchemaObject.array(ofSchema: APISchemaObject.integer()),
+                'defensio': APISchemaObject.string(),
+                'producentis': APISchemaObject.string(),
+                'priorProbationem': APISchemaObject.string(),
+                'gladiator': APISchemaObject.object({
+                    'input': APISchemaObject.object({
+                      'index': APISchemaObject.integer(),
+                      'signature': APISchemaObject.string(),
+                      'gladiatorId': APISchemaObject.string()                      
+                    }),
+                    'outputs': APISchemaObject.object({
+                      'index': APISchemaObject.integer(),
+                      'signature': APISchemaObject.string(),
+                      'gladiatorId': APISchemaObject.string(),
+                    }), 
+                    'random': APISchemaObject.string(),
+                    'id': APISchemaObject.string()
+                }),
+                'liberTransactions': APISchemaObject.array(ofSchema: APISchemaObject.object({
+                   "probationem": APISchemaObject.string(),
+                   "interioreTransaction": APISchemaObject.object({
+                      'liber': APISchemaObject.boolean(),
+                      'inputs': APISchemaObject.array(ofSchema: APISchemaObject.object({
+                        'index': APISchemaObject.integer(),
+                        'signature': APISchemaObject.string(),
+                        'transactionId': APISchemaObject.string() 
+                      })),
+                      'outputs': APISchemaObject.object({
+                        'publicKey': APISchemaObject.string(),
+                        'gla': APISchemaObject.string()
+                      }),
+                      'random': APISchemaObject.string(),
+                      'id': APISchemaObject.integer(),
+                      'nonce': APISchemaObject.string(),
+                      'expressi': APISchemaObject.string()
+                   })
+                })),
+                'fixumTransactions': APISchemaObject.array(ofSchema: APISchemaObject.object({
+                  "probationem": APISchemaObject.string(),
+                  "interioreTransaction": APISchemaObject.object({
+                    'liber': APISchemaObject.boolean(),
+                    "interioreTransaction": APISchemaObject.object({
+                      'liber': APISchemaObject.boolean(),
+                      'inputs': APISchemaObject.array(ofSchema: APISchemaObject.object({
+                        'index': APISchemaObject.integer(),
+                        'signature': APISchemaObject.string(),
+                        'transactionId': APISchemaObject.string() 
+                      })),
+                      'outputs': APISchemaObject.object({
+                        'publicKey': APISchemaObject.string(),
+                        'gla': APISchemaObject.string()
+                      }),
+                      'random': APISchemaObject.string(),
+                      'id': APISchemaObject.integer(),
+                      'nonce': APISchemaObject.string(),
+                   })
+                  })
+                })),
+                'expressiTransactions': APISchemaObject.array(ofSchema: APISchemaObject.object({
+                  "probationem": APISchemaObject.string(),
+                  "interioreTransaction": APISchemaObject.object({
+                    'liber': APISchemaObject.boolean(),
+                    "interioreTransaction": APISchemaObject.object({
+                      'liber': APISchemaObject.boolean(),
+                      'inputs': APISchemaObject.array(ofSchema: APISchemaObject.object({
+                        'index': APISchemaObject.integer(),
+                        'signature': APISchemaObject.string(),
+                        'transactionId': APISchemaObject.string() 
+                      })),
+                      'outputs': APISchemaObject.object({
+                        'publicKey': APISchemaObject.string(),
+                        'gla': APISchemaObject.string()
+                      }),
+                      'random': APISchemaObject.string(),
+                      'id': APISchemaObject.integer(),
+                      'nonce': APISchemaObject.string(),
+                   }) 
+          }),
+        }))
+          })
+          }), 
         }))
       };
     }

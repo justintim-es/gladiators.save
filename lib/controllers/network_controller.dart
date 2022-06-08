@@ -9,4 +9,17 @@ class NetworkController extends ResourceController {
   Future<Response> peers() async {
     return Response.ok(p2p.sockets);
   }  
+  @override
+  Map<String, APIResponse> documentOperationResponses(APIDocumentContext context, Operation operation) {
+      return {
+        "200": APIResponse.schema("Fetched connected peers", APISchemaObject.object({
+          "defensio": APISchemaObject.string(),
+          "yourBid": APISchemaObject.integer(),
+          "probationem": APISchemaObject.string(),
+          "index": APISchemaObject.integer()
+        }))
+      };
+    
+    
+  }
 }

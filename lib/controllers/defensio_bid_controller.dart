@@ -38,6 +38,7 @@ class DefensioBidController extends ResourceController {
       return Response.badRequest(body: err.toJson());
     }
   }
+
   @override
   Map<String, APIResponse> documentOperationResponses(APIDocumentContext context, Operation operation) {
     if(operation.pathVariables.contains("gladiatorId")) {

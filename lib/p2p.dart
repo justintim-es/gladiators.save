@@ -53,7 +53,7 @@ class OnConnectP2PMessage extends P2PMessage {
   List<Transaction> fixumTxs;
   OnConnectP2PMessage(this.sockets, this.propters, this.liberTxs, this.fixumTxs, String type, String from): super(type, from);
   OnConnectP2PMessage.fromJson(Map<String, dynamic> jsoschon):
-    sockets = List<String>.from(jsoschon['sockets'] as List<String>),
+    sockets = List<String>.from(jsoschon['sockets'] as List<dynamic>),
     propters = List<Propter>.from(jsoschon['propters'].map((x) => Propter.fromJson(x as Map<String, dynamic>)) as List<Map<String, dynamic>>),
     liberTxs = List<Transaction>.from(jsoschon['liberTxs'].map((x) => Transaction.fromJson(x as Map<String, dynamic>)) as List<Map<String, dynamic>>),
     fixumTxs = List<Transaction>.from(jsoschon['fixumTxs'].map((x) => Transaction.fromJson(x as Map<String, dynamic>)) as List<Map<String, dynamic>>),
@@ -71,7 +71,7 @@ class SocketsP2PMessage extends P2PMessage {
   List<String> sockets;
   SocketsP2PMessage(this.sockets, String type, String from): super(type, from);
   SocketsP2PMessage.fromJson(Map<String, dynamic> jsoschon):
-    sockets = List<String>.from(jsoschon['sockets'] as List<String>),
+    sockets = List<String>.from(jsoschon['sockets'] as List<dynamic>),
     super.fromJson(jsoschon);
   @override
   Map<String, dynamic> toJson() => {
@@ -95,7 +95,7 @@ class RemoveProptersP2PMessage extends P2PMessage {
   List<String> ids;
   RemoveProptersP2PMessage(this.ids, String type, String from): super(type, from);
   RemoveProptersP2PMessage.fromJson(Map<String, dynamic> jsoschon):
-    ids = List<String>.from(jsoschon['ids'] as List<String>),
+    ids = List<String>.from(jsoschon['ids'] as List<dynamic>),
     super.fromJson(jsoschon);
   @override
   Map<String, dynamic> toJson() => {
@@ -119,7 +119,7 @@ class RemoveTransactionsP2PMessage extends P2PMessage {
   List<String> ids;
   RemoveTransactionsP2PMessage(this.ids, String type, String from): super(type, from);
   RemoveTransactionsP2PMessage.fromJson(Map<String, dynamic> jsoschon):
-    ids = List<String>.from(jsoschon['ids'] as List<String>),
+    ids = List<String>.from(jsoschon['ids'] as List<dynamic>),
     super.fromJson(jsoschon);
   @override
   Map<String, dynamic> toJson() => {

@@ -1,5 +1,4 @@
 import 'package:gladiators/gladiators.dart';
-import 'package:args/args.dart';
 Future main() async {
     // var parser = ArgParser();
     // parser.addOption('publica-clavis');
@@ -13,8 +12,8 @@ Future main() async {
     // parser.addOption('directory', help: 'where should we save the blocks', mandatory: true);
 
   final app = Application<GladiatorsChannel>()
-    ..options.configurationFilePath = "config.yaml"
-    ..options.port = 8888;
+    ..options.port = 1515
+    ..options.configurationFilePath = "config.yaml";
 
   await app.startOnCurrentIsolate();
 

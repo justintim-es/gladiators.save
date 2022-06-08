@@ -38,7 +38,7 @@ class GladiatorsController extends ResourceController {
   Map<String, APIResponse> documentOperationResponses(APIDocumentContext context, Operation operation) {
     if(!operation.pathVariables.contains("publica")) {
       return {
-        "200": APIResponse.schema("Fetch undefeaten gladiators", APISchemaObject.array(ofSchema:  APISchemaObject.object({
+        "200": APIResponse.schema("Fetched undefeaten gladiators", APISchemaObject.array(ofSchema:  APISchemaObject.object({
           "id": APISchemaObject.string(),
           "output": APISchemaObject.object({
             "defensio": APISchemaObject.string(),

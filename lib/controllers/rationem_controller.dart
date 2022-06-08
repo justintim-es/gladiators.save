@@ -108,10 +108,31 @@ class RationemController extends ResourceController {
   Map<String, APIResponse> documentOperationResponses(APIDocumentContext context, Operation operation) {
     if(operation.method == "POST") {
         return {
-          "200": APIResponse.schema("Fetch a public key to be defended", APISchemaObject.object({
+          "200": APIResponse.schema("Fetched a public key to be defended", APISchemaObject.object({
             "propterIdentitatis": APISchemaObject.string()
           }))
         };
+    } else if (operation.pathVariables.contains("identitatis")) {
+      return {
+        "200": APIResponse.schema("Fetched account info", APISchemaObject.object({
+          "data": APISchemaObject.object({
+            'includi': APISchemaObject.boolean(),
+            'index': APISchemaObject.integer(),
+            'indicatione': APISchemaObject.integer(),
+            'obstructionumNumerus': APISchemaObject.array(ofSchema: APISchemaObject.integer()),
+            'defensio': APISchemaObject.string(),
+          }),
+          "scriptum": APISchemaObject.object({
+            "id": APISchemaObject.string(),
+            "random": APISchemaObject.string(),
+            "input": APISchemaObject.object({
+              "gladiatorId": APISchemaObject.string(),
+              "signature": APISchemaObject.string(),
+              
+            })
+          })
+        }))
+      };
     } else {
       return { "200":  APIResponse.schema("Fetch all defences of a gladiator", APISchemaObject.array(ofSchema:  APISchemaObject.string()))
       };
