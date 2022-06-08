@@ -1,0 +1,102 @@
+import 'dart:isolate';
+
+import  'package:conduit/conduit.dart';
+import 'package:elliptic/elliptic.dart';
+import 'package:gladiators/gladiators.dart';
+import 'package:gladiators/models/constantes.dart';
+import 'package:gladiators/models/exampla.dart';
+import 'package:gladiators/models/obstructionum.dart';
+import 'package:gladiators/models/pera.dart';
+import 'package:gladiators/models/transaction.dart';
+import 'package:gladiators/models/unitas.dart';
+import 'package:gladiators/models/utils.dart';
+import 'package:gladiators/p2p.dart';
+import 'package:gladiators/models/errors.dart';
+import 'dart:convert';
+
+class TransactionController extends ResourceController {
+  Directory directory;
+  P2P p2p;
+  TransactionController(this.directory, this.p2p); 
+ 
+  @Operation.get('identitatis')
+  Future<Response> transaction(@Bind.path('identitatis') String identitatis) async {
+    List<Obstructionum> obs = [];
+        for (int i = 0; i < directory.listSync().length; i++) {
+          await for (String obstructionum in Utils.fileAmnis(File('${directory.path}${Constantes.fileNomen}$i.txt'))) {
+            obs.add(Obstructionum.fromJson(json.decode(obstructionum) as Map<String, dynamic>));
+          }
+        }
+        Obstructionum prior = await Utils.priorObstructionum(directory);
+        for (InterioreObstructionum interiore in obs.map((o) => o.interioreObstructionum)) {
+          for (Transaction tx in interiore.liberTransactions) {
+            if (tx.interioreTransaction.id == identitatis) {
+              TransactionInfo txInfo =
+              TransactionInfo(
+                true,
+                tx.interioreTransaction.inputs.map((x) => x.transactionId).toList(),
+                interiore.indicatione,
+                interiore.obstructionumNumerus, 
+                Utils.confirmationes(interiore.obstructionumNumerus, prior.interioreObstructionum.obstructionumNumerus)
+              );
+              return Response.ok(json.encode({
+                  "data": txInfo.toJson(),
+                  "scriptum": tx.toJson()
+              }));
+            }
+          }
+          for (Transaction tx in interiore.fixumTransactions) {
+            if (tx.interioreTransaction.id == identitatis) {
+              TransactionInfo txInfo =
+              TransactionInfo(
+                false,
+                tx.interioreTransaction.inputs.map((x) => x.transactionId).toList(),
+                interiore.indicatione,
+                interiore.obstructionumNumerus,
+                Utils.confirmationes(interiore.obstructionumNumerus, prior.interioreObstructionum.obstructionumNumerus)
+              );
+              return Response.ok(json.encode({
+                "data": txInfo.toJson(),
+                "scriptum": tx.toJson()
+              }));
+            }
+          }
+        }
+        for (Transaction tx in p2p.liberTxs) {
+          if (tx.interioreTransaction.id == identitatis) {
+            TransactionInfo txInfo =
+            TransactionInfo(
+              false,
+              tx.interioreTransaction.inputs.map((x) => x.transactionId).toList(),
+              null,
+              null,
+              null
+            );
+            return Response.ok(json.encode({
+              "data": txInfo.toJson(),
+              "scriptum": tx.toJson()
+            }));
+          }
+        }
+        for (Transaction tx in p2p.fixumTxs) {
+          if (tx.interioreTransaction.id == identitatis) {
+            TransactionInfo txInfo =
+            TransactionInfo(
+              false,
+              tx.interioreTransaction.inputs.map((x) => x.transactionId).toList(),
+              null,
+              null,
+              null
+            );
+            return Response.ok(json.encode({
+              "data": txInfo.toJson(),
+              "scriptum": tx.toJson()
+            }));
+          }
+        }
+        return Response.notFound(body: {
+          "code": 0,
+          "message": "Transaction not found"
+        });
+    } 
+}
