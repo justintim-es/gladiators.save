@@ -6,7 +6,7 @@ class TransactionExpressiController extends ResourceController {
   TransactionExpressiController(this.p2p);
   
   @Operation.get('expressi-stagnum') 
-  Response expressiStagnum() {
+  Future<Response> expressiStagnum() async {
      return Response.ok(p2p.expressieTxs.map((e) => e.toJson()).toList());
   }
   

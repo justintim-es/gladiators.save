@@ -170,13 +170,13 @@ class MineExpressiController extends ResourceController {
   }
 
   @Operation.get()
-  Response threads() {
+  Future<Response> threads() async {
     return Response.ok({
       "threads": expressiThreads.length
     });
   }
   @Operation.delete()
-  Response deschel() {
+  Future<Response> deschel() async {
     expressiThreads.forEach((e) => e.kill(priority: Isolate.immediate));
     return Response.ok({
       "message": "bene substitit expressi miner",

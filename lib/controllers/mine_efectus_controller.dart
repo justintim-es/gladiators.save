@@ -122,13 +122,13 @@ class MineEfectusController extends ResourceController {
     }
   }
   @Operation.get()
-  Response threads() {
+  Future<Response> threads() async {
     return Response.ok({
       "threads": efectusThreads.length
     });
   }
   @Operation.delete()
-  Response deschel() {
+  Future<Response> deschel() async {
     efectusThreads.forEach((e) => e.kill(priority: Isolate.immediate));
     return Response.ok({
       "message": "bene substitit efectus miner",

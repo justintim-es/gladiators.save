@@ -157,13 +157,13 @@ class MineConfussusController extends ResourceController {
   }
 
   @Operation.get()
-  Response threads() {
+  Future<Response> threads() async {
     return Response.ok({
       "threads": confussuses.length
     });
   }
   @Operation.delete()
-  Response deschel() {
+  Future<Response> deschel() async {
     confussuses.forEach((e) => e.kill(priority: Isolate.immediate));
     return Response.ok({
       "message": "bene substitit confussus miner",
