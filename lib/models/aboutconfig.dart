@@ -9,4 +9,5 @@ class Aboutconfig extends Configuration {
     bool? novus;
     String? directory;
     int? maxPares;
+    String? bootnode;
 }

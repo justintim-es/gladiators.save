@@ -62,6 +62,10 @@ class GladiatorsChannel extends ApplicationChannel {
       await obs.salvareIncipio(directory!);
     }
     p2p = P2P(aboutconfig!.maxPares!, Utils.randomHex(32), '${aboutconfig!.internumIp!}:${aboutconfig!.p2pPortus}', directory!, [0]);
+    p2p!.listen(aboutconfig!.internumIp!, int.parse(aboutconfig!.p2pPortus!));
+    if(aboutconfig!.bootnode != null) {
+      p2p!.connect(aboutconfig!.bootnode!, '${aboutconfig!.externalIp!}:${aboutconfig!.p2pPortus}');
+    }
     p2p!.efectusRp.listen((message) {
       Rp.efectus(isSalutaris, efectusThreads, propterIsolates, liberTxIsolates, fixumTxIsolates, p2p!, aboutconfig!, directory!);
     });
