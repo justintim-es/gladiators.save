@@ -128,7 +128,20 @@ class RationemController extends ResourceController {
             "input": APISchemaObject.object({
               "gladiatorId": APISchemaObject.string(),
               "signature": APISchemaObject.string(),
-              
+              "index": APISchemaObject.integer()
+            }),
+            "output": APISchemaObject.object({
+              "output": APISchemaObject.object({
+            "defensio": APISchemaObject.string(),
+            "rationem": APISchemaObject.array(ofSchema:  APISchemaObject.object({
+              "probationem": APISchemaObject.string(),
+              "interioreRationem": APISchemaObject.object({
+                "publicaClavis": APISchemaObject.string(),
+                "nonce": APISchemaObject.integer(),
+                "id": APISchemaObject.string()
+              })
+            }))
+          })
             })
           })
         }))

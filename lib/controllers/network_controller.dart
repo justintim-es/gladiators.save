@@ -1,5 +1,9 @@
 import 'package:conduit/conduit.dart';
 import 'package:gladiators/p2p.dart';
+import 'package:conduit_common/conduit_common.dart';
+import 'package:conduit_open_api/v3.dart';
+
+import 'package:conduit/conduit.dart';
 
 
 class NetworkController extends ResourceController {
@@ -11,15 +15,8 @@ class NetworkController extends ResourceController {
   }  
   @override
   Map<String, APIResponse> documentOperationResponses(APIDocumentContext context, Operation operation) {
-      return {
-        "200": APIResponse.schema("Fetched connected peers", APISchemaObject.object({
-          "defensio": APISchemaObject.string(),
-          "yourBid": APISchemaObject.integer(),
-          "probationem": APISchemaObject.string(),
-          "index": APISchemaObject.integer()
-        }))
-      };
-    
-    
+    return {
+      "200": APIResponse.schema("Fetched connected peers", APISchemaObject.array(ofSchema: APISchemaObject.string()))
+    };
   }
 }
