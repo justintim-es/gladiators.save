@@ -129,7 +129,7 @@ class Probationems {
   final List<int> lastIndex;
   Probationems(this.firstIndex, this.lastIndex);
 
-  Map<String, dynamic> toJson() => {
+  Map<String, dynamic> asMap() => {
     'firstIndex': firstIndex,
     'lastIndex': lastIndex
   };
