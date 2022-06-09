@@ -153,12 +153,6 @@ class Transaction {
           print('non subscribere');
           return false;
         }
-        final inconsumptus = await Pera.inconsumptusOutputs(true, tx.interioreTransaction.outputs[input.index].publicKey, dir);
-        final outputs = inconsumptus.map((x) => x.item3);
-        if (!outputs.contains(tx.interioreTransaction.outputs[input.index])) {
-          print('output iam signatum');
-          return false;
-        }
         spendable += tx.interioreTransaction.outputs[input.index].gla;
     }
     BigInt spended = BigInt.zero;
@@ -180,14 +174,7 @@ class Transaction {
       if (!Utils.cognoscere(PublicKey.fromHex(Pera.curve(), tx.interioreTransaction.outputs[input.index].publicKey), Signature.fromCompactHex(input.signature), tx.interioreTransaction.outputs[input.index])) {
         return false;
       }
-      final inconsumptus = await Pera.inconsumptusOutputs(true, tx.interioreTransaction.outputs[input.index].publicKey, dir);
-      final outputs = inconsumptus.map((x) => x.item3);
-      if (!outputs.contains(tx.interioreTransaction.outputs[input.index])) {
-        print('output iam signatum');
-        return false;
-      }
       spendable += tx.interioreTransaction.outputs[input.index].gla;
-
     }
     BigInt spended = BigInt.zero;
     for(TransactionOutput output in interioreTransaction.outputs) {
