@@ -14,12 +14,12 @@ class TransactionInput {
   final String signature;
   final String transactionId;
   TransactionInput(this.index, this.signature, this.transactionId);
-  Map toJson() => {
+  Map<String, dynamic> toJson() => {
     'index': index,
     'signature': signature,
     'transactionId': transactionId
   };
-  TransactionInput.fromJson(Map jsoschon):
+  TransactionInput.fromJson(Map<String, dynamic> jsoschon):
       index = int.parse(jsoschon['index'].toString()),
       signature = jsoschon['signature'].toString(),
       transactionId = jsoschon['transactionId'].toString();
@@ -28,11 +28,11 @@ class TransactionOutput {
   final String publicKey;
   final BigInt gla;
   TransactionOutput(this.publicKey, this.gla);
-  Map toJson() => {
+  Map<String, dynamic> toJson() => {
     'publicKey': publicKey,
     'gla': gla.toString()
   };
-  TransactionOutput.fromJson(Map jsoschon):
+  TransactionOutput.fromJson(Map<String, dynamic> jsoschon):
       publicKey = jsoschon['publicKey'].toString(),
       gla = BigInt.parse(jsoschon['gla'].toString());
 }
@@ -69,7 +69,7 @@ class InterioreTransaction {
   mine() {
     nonce += BigInt.one;
   }
-  Map toJson() => {
+  Map<String, dynamic> toJson() => {
     'liber': liber,
     'inputs': inputs.map((i) => i.toJson()).toList(),
     'outputs': outputs.map((o) =>  o.toJson()).toList(),
@@ -78,10 +78,10 @@ class InterioreTransaction {
     'nonce': nonce.toString(),
     'expressi': expressi
   };
-  InterioreTransaction.fromJson(Map jsoschon):
+  InterioreTransaction.fromJson(Map<String, dynamic>jsoschon):
       liber = jsoschon['liber'] as bool,
-      inputs = List<TransactionInput>.from(jsoschon['inputs'].map((i) => TransactionInput.fromJson(i as Map)) as Iterable<dynamic>),
-      outputs = List<TransactionOutput>.from(jsoschon['outputs'].map((o) => TransactionOutput.fromJson(o as Map)) as Iterable<dynamic>),
+      inputs = List<TransactionInput>.from(jsoschon['inputs'].map((i) => TransactionInput.fromJson(i as Map<String, dynamic>)) as Iterable<dynamic>),
+      outputs = List<TransactionOutput>.from(jsoschon['outputs'].map((o) => TransactionOutput.fromJson(o as Map<String, dynamic>)) as Iterable<dynamic>),
       random = jsoschon['random'].toString(),
       id = jsoschon['id'].toString(),
       nonce = BigInt.parse(jsoschon['nonce'].toString()),
@@ -91,9 +91,9 @@ class Transaction {
   late String probationem;
   final InterioreTransaction interioreTransaction;
   Transaction(this.probationem, this.interioreTransaction);
-  Transaction.fromJson(Map jsoschon):
+  Transaction.fromJson(Map<String, dynamic> jsoschon):
       probationem = jsoschon['probationem'].toString(),
-      interioreTransaction = InterioreTransaction.fromJson(jsoschon['interioreTransaction'] as Map);
+      interioreTransaction = InterioreTransaction.fromJson(jsoschon['interioreTransaction'] as Map<String, dynamic>);
   Transaction.expressi(this.interioreTransaction): probationem = HEX.encode(sha512.convert(utf8.encode(json.encode(interioreTransaction.toJson()))).bytes);
   static void quaestum(List<dynamic> argumentis) {
     InterioreTransaction interiore = argumentis[0] as InterioreTransaction;

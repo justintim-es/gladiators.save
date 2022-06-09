@@ -212,9 +212,9 @@ class InterioreObstructionum {
       producentis = jsoschon['producentis'].toString(),
       priorProbationem = jsoschon['priorProbationem'].toString(),
       gladiator = Gladiator.fromJson(jsoschon['gladiator'] as Map<String, dynamic>),
-      liberTransactions = List<Transaction>.from(jsoschon['liberTransactions'].map((l) => Transaction.fromJson(l as Map)) as Iterable<dynamic>),
-      fixumTransactions = List<Transaction>.from(jsoschon['fixumTransactions'].map((f) => Transaction.fromJson(f as Map)) as Iterable<dynamic>),
-      expressiTransactions = List<Transaction>.from(jsoschon['expressiTransactions'].map((e) => Transaction.fromJson(e as Map)) as Iterable<dynamic>);
+      liberTransactions = List<Transaction>.from(jsoschon['liberTransactions'].map((l) => Transaction.fromJson(l as Map<String, dynamic>)) as Iterable<dynamic>),
+      fixumTransactions = List<Transaction>.from(jsoschon['fixumTransactions'].map((f) => Transaction.fromJson(f as Map<String, dynamic>)) as Iterable<dynamic>),
+      expressiTransactions = List<Transaction>.from(jsoschon['expressiTransactions'].map((e) => Transaction.fromJson(e as Map<String, dynamic>)) as Iterable<dynamic>);
 }
 
 
