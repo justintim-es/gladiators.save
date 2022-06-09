@@ -15,12 +15,12 @@ class InterioreRationem {
   mine() {
     nonce += BigInt.one;
   }
-  Map toJson() => {
+  Map<String, dynamic> toJson() => {
     'publicaClavis': publicaClavis,
     'nonce': nonce.toString(),
     'id': id
   };
-  InterioreRationem.fromJson(Map jsoschon):
+  InterioreRationem.fromJson(Map<String, dynamic> jsoschon):
       publicaClavis = jsoschon['publicaClavis'].toString(),
       nonce = BigInt.parse(jsoschon['nonce'].toString()),
       id = jsoschon['id'].toString();
@@ -46,13 +46,13 @@ class Propter {
       mitte.send(Propter(probationem, interioreRationem));
     }
   }
-  Map toJson() => {
+  Map<String, dynamic> toJson() => {
     'probationem': probationem,
     'interioreRationem': interioreRationem.toJson()
   };
-  Propter.fromJson(Map jsoschon):
+  Propter.fromJson(Map<String, dynamic> jsoschon):
       probationem = jsoschon['probationem'].toString(),
-      interioreRationem = InterioreRationem.fromJson(jsoschon['interioreRationem'] as Map);
+      interioreRationem = InterioreRationem.fromJson(jsoschon['interioreRationem'] as Map<String, dynamic>);
   bool isProbationem() {
     if (probationem == HEX.encode(sha256.convert(utf8.encode(json.encode(interioreRationem.toJson()))).bytes)) {
       return true;
@@ -67,7 +67,7 @@ class GladiatorInput {
   final String signature;
   final String gladiatorId;
   GladiatorInput(this.index, this.signature, this.gladiatorId);
-  Map toJson() => {
+  Map<String, dynamic> toJson() => {
     'index': index,
      'signature': signature,
     'gladiatorId': gladiatorId
@@ -81,12 +81,12 @@ class GladiatorOutput {
   final List<Propter> rationem;
   final String defensio;
   GladiatorOutput(this.rationem): defensio = Utils.randomHex(1);
-  Map toJson() => {
+  Map<String, dynamic> toJson() => {
     'rationem': rationem.map((r) => r.toJson()).toList(),
     'defensio': defensio
   };
-  GladiatorOutput.fromJson(Map jsoschon):
-    rationem = List<Propter>.from(jsoschon['rationem'].map((r) => Propter.fromJson(r as Map)) as Iterable<dynamic>),
+  GladiatorOutput.fromJson(Map<String, dynamic> jsoschon):
+    rationem = List<Propter>.from(jsoschon['rationem'].map((r) => Propter.fromJson(r as Map<String, dynamic>)) as Iterable<dynamic>),
     defensio = jsoschon['defensio'].toString();
 }
 class Gladiator {
@@ -100,15 +100,15 @@ class Gladiator {
                 utf8.encode(json.encode(input?.toJson())) +
                     utf8.encode(json.encode(outputs.map((o) => o.toJson()).toList())) +
                     utf8.encode(random)).bytes);
-    Map toJson() => {
+    Map<String, dynamic> toJson() => {
       'input': input?.toJson(),
       'outputs': outputs.map((o) => o.toJson()).toList(),
       'random': random,
       'id': id
     };
-    Gladiator.fromJson(Map jsoschon):
+    Gladiator.fromJson(Map<String, dynamic> jsoschon):
       input = jsoschon['input'] != null ?  GladiatorInput.fromJson(jsoschon['input'] as Map) : null,
-      outputs = List<GladiatorOutput>.from(jsoschon['outputs'].map((o) => GladiatorOutput.fromJson(o as Map)) as Iterable<dynamic>),
+      outputs = List<GladiatorOutput>.from(jsoschon['outputs'].map((o) => GladiatorOutput.fromJson(o as Map<String, dynamic>)) as Iterable<dynamic>),
       random = jsoschon['random'].toString(),
       id = jsoschon['id'].toString();
       static List<Propter> grab(int difficultas, List<Propter> propters) {
