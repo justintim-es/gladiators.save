@@ -146,7 +146,7 @@ class RequestObstructionumP2PMessage extends P2PMessage {
   List<int> numerus;
   RequestObstructionumP2PMessage(this.numerus, String type, String from): super(type, from);
   RequestObstructionumP2PMessage.fromJson(Map<String, dynamic> jsoschon):
-    numerus = List<int>.from(jsoschon['numerus'] as List<int>),
+    numerus = List<int>.from(jsoschon['numerus'] as List<dynamic>),
     super.fromJson(jsoschon);
   @override
   Map<String, dynamic> toJson() => {
