@@ -85,7 +85,7 @@ class InterioreTransaction {
       random = jsoschon['random'].toString(),
       id = jsoschon['id'].toString(),
       nonce = BigInt.parse(jsoschon['nonce'].toString()),
-      expressi = jsoschon['expressi'] == 'null' ? null : jsoschon['expressi'].toString();
+      expressi = (jsoschon['expressi'] == 'null' || jsoschon['expressi'] == null) ? null : jsoschon['expressi'].toString();
 }
 class Transaction {
   late String probationem;
