@@ -54,9 +54,9 @@ class OnConnectP2PMessage extends P2PMessage {
   OnConnectP2PMessage(this.sockets, this.propters, this.liberTxs, this.fixumTxs, String type, String from): super(type, from);
   OnConnectP2PMessage.fromJson(Map<String, dynamic> jsoschon):
     sockets = List<String>.from(jsoschon['sockets'] as List<dynamic>),
-    propters = List<Propter>.from(jsoschon['propters'].map((x) => Propter.fromJson(x as Map<String, dynamic>)) as List<Map<String, dynamic>>),
-    liberTxs = List<Transaction>.from(jsoschon['liberTxs'].map((x) => Transaction.fromJson(x as Map<String, dynamic>)) as List<Map<String, dynamic>>),
-    fixumTxs = List<Transaction>.from(jsoschon['fixumTxs'].map((x) => Transaction.fromJson(x as Map<String, dynamic>)) as List<Map<String, dynamic>>),
+    propters = List<Propter>.from(jsoschon['propters'].map((x) => Propter.fromJson(x as Map<String, dynamic>)) as List<dynamic>),
+    liberTxs = List<Transaction>.from(jsoschon['liberTxs'].map((x) => Transaction.fromJson(x as Map<String, dynamic>)) as List<dynamic>),
+    fixumTxs = List<Transaction>.from(jsoschon['fixumTxs'].map((x) => Transaction.fromJson(x as Map<String, dynamic>)) as List<dynamic>),
     super.fromJson(jsoschon);
   @override
   Map<String, dynamic> toJson() => {

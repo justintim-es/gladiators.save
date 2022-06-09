@@ -129,4 +129,5 @@ class TransactionFixumController extends ResourceController {
       submittereTransactionSchema,
       representation: SubmittereTransaction);          
   }
+  
 }
