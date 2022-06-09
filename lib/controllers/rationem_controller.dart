@@ -130,8 +130,7 @@ class RationemController extends ResourceController {
               "signature": APISchemaObject.string(),
               "index": APISchemaObject.integer()
             }),
-            "output": APISchemaObject.object({
-              "output": APISchemaObject.object({
+            "outputs": APISchemaObject.array(ofSchema: APISchemaObject.object({
             "defensio": APISchemaObject.string(),
             "rationem": APISchemaObject.array(ofSchema:  APISchemaObject.object({
               "probationem": APISchemaObject.string(),
@@ -139,11 +138,15 @@ class RationemController extends ResourceController {
                 "publicaClavis": APISchemaObject.string(),
                 "nonce": APISchemaObject.integer(),
                 "id": APISchemaObject.string()
-              })
+             })
             }))
-          })
-            })
-          })
+            }))
+          }),
+          "gladiatorId": APISchemaObject.string(),
+        })),
+        "400": APIResponse.schema("Account not found", APISchemaObject.object({
+          "code": APISchemaObject.integer(),
+          "message": APISchemaObject.string()
         }))
       };
     } else {

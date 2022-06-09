@@ -10,4 +10,5 @@ class Aboutconfig extends Configuration {
     String? directory;
     int? maxPares;
     String? bootnode;
+    List<String>? cors;
 }

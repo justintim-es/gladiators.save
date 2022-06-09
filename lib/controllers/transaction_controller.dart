@@ -40,8 +40,8 @@ class TransactionController extends ResourceController {
                 Utils.confirmationes(interiore.obstructionumNumerus, prior.interioreObstructionum.obstructionumNumerus)
               );
               return Response.ok(json.encode({
-                  "data": txInfo.toJson(),
-                  "scriptum": tx.toJson()
+                "data": txInfo.toJson(),
+                "scriptum": tx.toJson()
               }));
             }
           }
@@ -98,5 +98,38 @@ class TransactionController extends ResourceController {
           "code": 0,
           "message": "Transaction not found"
         });
-    } 
+    }
+  @override
+  Map<String, APIResponse> documentOperationResponses(APIDocumentContext context, Operation operation) {
+    return {
+      "200": APIResponse.schema("Fetched transaction", APISchemaObject.array(ofSchema: APISchemaObject.object({
+        "data": APISchemaObject.object({
+          "includi": APISchemaObject.boolean(),
+          "index": APISchemaObject.integer(),
+          "indicatione": APISchemaObject.integer(),
+          "obstructionumNumerus": APISchemaObject.array(ofSchema:  APISchemaObject.integer()),
+          "confirmationes": APISchemaObject.string()
+        }),
+        "scriptum": APISchemaObject.object({
+          "probationem": APISchemaObject.string(),
+          "interioreTransaction": APISchemaObject.object({
+            'liber': APISchemaObject.boolean(),
+            'inputs': APISchemaObject.array(ofSchema: APISchemaObject.object({
+              'index': APISchemaObject.integer(),
+              'signature': APISchemaObject.string(),
+              'transactionId': APISchemaObject.string() 
+            })),
+            'outputs': APISchemaObject.object({
+              'publicKey': APISchemaObject.string(),
+              'gla': APISchemaObject.string()
+            }),
+            'random': APISchemaObject.string(),
+            'id': APISchemaObject.integer(),
+            'nonce': APISchemaObject.string(),
+            'expressi': APISchemaObject.string()
+          })
+        })
+      })))
+    };
+  } 
 }

@@ -55,6 +55,7 @@ class GladiatorsChannel extends ApplicationChannel {
   Future prepare() async {
     logger.onRecord.listen(
         (rec) => print("$rec ${rec.error ?? ""} ${rec.stackTrace ?? ""}"));
+    CORSPolicy.defaultPolicy.allowedOrigins = ["*"];
     aboutconfig = Aboutconfig(options!.configurationFilePath!);
     directory = await Directory(aboutconfig!.directory!).create( recursive: true );
     if(aboutconfig!.novus! && directory!.listSync().isEmpty) {

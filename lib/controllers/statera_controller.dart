@@ -12,4 +12,12 @@ class StateraController extends ResourceController {
         "statera": statera.toString()
     });
   }
+  @override
+  Map<String, APIResponse> documentOperationResponses(APIDocumentContext context, Operation operation) {
+    return {
+      "200": APIResponse.schema("Fetched account balance", APISchemaObject.array(ofSchema: APISchemaObject.object({
+        "statera": APISchemaObject.string(),
+      })))
+    };
+  }
 }

@@ -39,17 +39,26 @@ class SubmittereRationem extends Serializable {
     });
   }
 }
-class SubmittereTransaction {
-  final String from;
-  final String to;
-  final BigInt gla;
-  final String? unit;
-  SubmittereTransaction(this.from, this.to, this.gla, this.unit);
-  SubmittereTransaction.fromJson(Map<String, dynamic> jsoschon):
-      to = jsoschon['to'].toString(),
-      from = jsoschon['from'].toString(),
-      gla = BigInt.parse(jsoschon['gla'].toString()),
-      unit = (jsoschon['unit']).toString();
+class SubmittereTransaction extends Serializable {
+  String? from;
+  String? to;
+  BigInt? gla;
+  String? unit;
+
+  Map<String, dynamic> asMap() => {
+    'from': from,
+    'to': to,
+    'gla': gla,
+    'unit': unit
+  };
+  // SubmittereTransaction(this.from, this.to, this.gla, this.unit);
+  void readFromMap(Map<String, dynamic> map) {
+      to = map['to'].toString();
+      from = map['from'].toString();
+      gla = BigInt.parse(map['gla'].toString());
+      unit = map['unit'].toString();
+  }
+    
 }
 class RemoveTransaction {
   final bool liber;
