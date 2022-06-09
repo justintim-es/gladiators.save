@@ -208,7 +208,7 @@ class InterioreObstructionum {
       liberForumCap = BigInt.parse(jsoschon['liberForumCap'].toString()),
       fixumForumCap = BigInt.parse(jsoschon['fixumForumCap'].toString()),
       obstructionumNumerus = List<int>.from(jsoschon['obstructionumNumerus'] as List<dynamic>),
-      defensio = jsoschon['defensio'].toString(),
+      defensio = jsoschon['defensio'].toString() == 'null' ? null : jsoschon['defensio'].toString(),
       producentis = jsoschon['producentis'].toString(),
       priorProbationem = jsoschon['priorProbationem'].toString(),
       gladiator = Gladiator.fromJson(jsoschon['gladiator'] as Map<String, dynamic>),

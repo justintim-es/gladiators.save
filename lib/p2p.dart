@@ -197,6 +197,7 @@ class P2P {
       client.listen((data) async {
         print(client.address.address);
         print(client.port);
+        
         P2PMessage msg = P2PMessage.fromJson(json.decode(String.fromCharCodes(data).trim()) as Map<String, dynamic>);
         if(msg.type == 'connect-bootnode') {
           ConnectBootnodeP2PMessage cbp2pm = ConnectBootnodeP2PMessage.fromJson(json.decode(String.fromCharCodes(data).trim()) as Map<String, dynamic>);

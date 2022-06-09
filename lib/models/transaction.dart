@@ -204,7 +204,7 @@ class Transaction {
     return reditus;
   }
   bool validateProbationem() {
-    if (probationem != HEX.encode(sha256.convert(utf8.encode(json.encode(interioreTransaction.toJson()))).bytes)) {
+    if (probationem != HEX.encode(sha512.convert(utf8.encode(json.encode(interioreTransaction.toJson()))).bytes)) {
       return false;
     }
     return true;
