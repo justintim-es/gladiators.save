@@ -616,7 +616,7 @@ class P2P {
       });
     });
   }
-  connect(String bootnode, String me) async {
+  void connect(String bootnode, String me) async {
     sockets.add(bootnode);
     Socket socket = await Socket.connect(bootnode.split(':')[0], int.parse(bootnode.split(':')[1]));
     socket.write(json.encode(ConnectBootnodeP2PMessage(me, 'connect-bootnode', me).toJson()));
@@ -630,7 +630,7 @@ class P2P {
       fixumTxs.addAll(ocp2pm.fixumTxs);
     });
   }
-  syncPropter(Propter propter) async {
+  void syncPropter(Propter propter) async {
     if(propters.any((p) => p.interioreRationem.id == propter.interioreRationem.id)) {
       propters.removeWhere((p) => p.interioreRationem.id == propter.interioreRationem.id);
     }
@@ -640,7 +640,7 @@ class P2P {
       soschock.write(json.encode(PropterP2PMessage(propter, 'propter', from).toJson()));
     }
   }
-  syncLiberTx(Transaction tx) async {
+  void syncLiberTx(Transaction tx) async {
     if (liberTxs.any((t) => t.interioreTransaction.id == tx.interioreTransaction.id)) {
       liberTxs.removeWhere((t) => t.interioreTransaction.id == tx.interioreTransaction.id);
     }
@@ -654,14 +654,14 @@ class P2P {
       });
     }
   }
-  syncExpressiTx(Transaction tx) async {
+  void syncExpressiTx(Transaction tx) async {
     expressieTxs.add(tx);
     for (String socket in sockets) {
       Socket soschock = await Socket.connect(socket.split(':')[0], int.parse(socket.split(':')[1]));
       soschock.write(json.encode(TransactionP2PMessage(tx, 'expressi-tx', from).toJson()));
     }
   }
-  syncFixumTx(Transaction tx) async {
+  void syncFixumTx(Transaction tx) async {
     if (fixumTxs.any((t) => t.interioreTransaction.id == tx.interioreTransaction.id)) {
       fixumTxs.removeWhere((t) => t.interioreTransaction.id == tx.interioreTransaction.id);
     }
@@ -675,28 +675,28 @@ class P2P {
       });
     }
   }
-  removePropters(List<String> ids) async {
+  void removePropters(List<String> ids) async {
     propters.removeWhere((p) => ids.any((i) => i == p.interioreRationem.id));
     for (String socket in sockets) {
       Socket soschock = await Socket.connect(socket.split(':')[0], int.parse(socket.split(':')[1]));
       soschock.write(json.encode(RemoveProptersP2PMessage(ids, 'remove-propters', from).toJson()));
     }
   }
-  removeLiberTxs(List<String> ids) async {
+  void removeLiberTxs(List<String> ids) async {
     liberTxs.removeWhere((l) => ids.any((i) => i == l.interioreTransaction.id));
     for (String socket in sockets) {
       Socket soschock = await Socket.connect(socket.split(':')[0], int.parse(socket.split(':')[1]));
       soschock.write(json.encode(RemoveTransactionsP2PMessage(ids, 'remove-liber-txs', from).toJson()));
     }
   }
-  removeFixumTxs(List<String> ids) async {
+  void removeFixumTxs(List<String> ids) async {
     fixumTxs.removeWhere((f) => ids.contains(f.interioreTransaction.id));
     for (String socket in sockets) {
       Socket soschock = await Socket.connect(socket.split(':')[0], int.parse(socket.split(':')[1]));
       soschock.write(json.encode(RemoveTransactionsP2PMessage(ids, 'remove-fixum-txs', from).toJson()));
     }
   }
-  static syncBlock(List<dynamic> args) async {
+  static void syncBlock(List<dynamic> args) async {
     Obstructionum obs = args[0] as Obstructionum;
     List<String> sockets = args[1] as List<String>;
     Directory dir = args[2] as Directory;
