@@ -53,10 +53,10 @@ class SubmittereTransaction extends Serializable {
   };
   // SubmittereTransaction(this.from, this.to, this.gla, this.unit);
   void readFromMap(Map<String, dynamic> map) {
-      to = map['to'].toString();
-      from = map['from'].toString();
-      gla = BigInt.parse(map['gla'].toString());
-      unit = map['unit'].toString();
+    to = map['to'].toString();
+    from = map['from'].toString();
+    gla = BigInt.parse(map['gla'].toString());
+    unit = map['unit'].toString();
   }
     
 }

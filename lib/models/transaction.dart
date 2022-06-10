@@ -171,7 +171,7 @@ class Transaction {
     for (TransactionInput input in interioreTransaction.inputs) {
       Obstructionum referObstructionum = obs.singleWhere((o) => o.interioreObstructionum.fixumTransactions.any((fixum) => fixum.interioreTransaction.id == input.transactionId));
       Transaction tx = referObstructionum.interioreObstructionum.fixumTransactions.singleWhere((fixum) => fixum.interioreTransaction.id == input.transactionId);
-      if (!Utils.cognoscere(PublicKey.fromHex(Pera.curve(), tx.interioreTransaction.outputs[input.index].publicKey), Signature.fromCompactHex(input.signature), tx.interioreTransaction.outputs[input.index])) {
+      if (!Utils.cognoscere(PublicKey.fromHex(Pera.curve(), tx.interioreTransaction.outputs[input.index].publicKey), Signature.fromASN1Hex(input.signature), tx.interioreTransaction.outputs[input.index])) {
         return false;
       }
       spendable += tx.interioreTransaction.outputs[input.index].gla;
