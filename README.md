@@ -15,7 +15,8 @@ run `conduit build`
 ### Step seven
 add the following service to `../../etc/systemd/system```
 in our case
-```[Service]
+```
+[Service]
 Type=simple
 Restart=always
 RestartSec=1
