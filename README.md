@@ -13,7 +13,7 @@ adjust the config.yaml
 ### Step six
 run `conduit build`
 ### Step seven
-add the following service to `../../etc/systemd/system```
+add the following service to `../../etc/systemd/system``` `nano nameofservice.service`
 in our case
 ```
 [Service]
