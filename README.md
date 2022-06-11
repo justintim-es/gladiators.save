@@ -15,7 +15,7 @@ run `conduit build`
 ### Step seven
 add the following service to `../../etc/systemd/system```
 in our case
-`[Service]
+```[Service]
 Type=simple
 Restart=always
 RestartSec=1
@@ -23,13 +23,13 @@ ExecStart=/root/gladiato.rs/gladiators.aot --config-path ./root/gladiato.rs/conf
 
 [Install]
 WantedBy=multi-user.target
-`
+```
 ### Step eight
 sudo apt install nginx
 ### Step nine
 adjust `../../etc/nginx/sites-available/default`
 to 
-`
+```
 server {
         listen 80 default_server;
         listen [::]:80 default_server;
@@ -62,7 +62,7 @@ server {
                 # as directory, then fall back to displaying a 404.
                 proxy_pass http://127.0.0.1:8888;
         }
-`
+```
 ### Step nine
 sudo service nameofservice start
 ### Step ten
