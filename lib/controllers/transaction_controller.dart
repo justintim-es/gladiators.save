@@ -39,10 +39,10 @@ class TransactionController extends ResourceController {
                 interiore.obstructionumNumerus, 
                 Utils.confirmationes(interiore.obstructionumNumerus, prior.interioreObstructionum.obstructionumNumerus)
               );
-              return Response.ok(json.encode({
+              return Response.ok({
                 "data": txInfo.toJson(),
                 "scriptum": tx.toJson()
-              }));
+              });
             }
           }
           for (Transaction tx in interiore.fixumTransactions) {
@@ -55,10 +55,10 @@ class TransactionController extends ResourceController {
                 interiore.obstructionumNumerus,
                 Utils.confirmationes(interiore.obstructionumNumerus, prior.interioreObstructionum.obstructionumNumerus)
               );
-              return Response.ok(json.encode({
+              return Response.ok({
                 "data": txInfo.toJson(),
                 "scriptum": tx.toJson()
-              }));
+              });
             }
           }
         }
@@ -72,10 +72,10 @@ class TransactionController extends ResourceController {
               null,
               null
             );
-            return Response.ok(json.encode({
+            return Response.ok({
               "data": txInfo.toJson(),
               "scriptum": tx.toJson()
-            }));
+            });
           }
         }
         for (Transaction tx in p2p.fixumTxs) {
@@ -88,10 +88,10 @@ class TransactionController extends ResourceController {
               null,
               null
             );
-            return Response.ok(json.encode({
+            return Response.ok({
               "data": txInfo.toJson(),
               "scriptum": tx.toJson()
-            }));
+            });
           }
         }
         return Response.notFound(body: {

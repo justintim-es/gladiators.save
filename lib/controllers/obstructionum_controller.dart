@@ -59,12 +59,12 @@ class ObstructionumController extends ResourceController {
     Future<Response> furcaUnumRetro() async {
       Obstructionum obs = await Utils.priorObstructionum(directory);
       await Utils.removeObstructionumsUntilProbationem(directory);
-      p2p!.liberTxs = [];
-      p2p!.fixumTxs= [];
-      return Response.ok(json.encode({
+      p2p.liberTxs = [];
+      p2p.fixumTxs= [];
+      return Response.ok({
         "message": "removed",
         "obstructionum": obs.toJson()
-      }));
+      });
     }
     @override
     Map<String, APIResponse> documentOperationResponses(APIDocumentContext context, Operation operation) {

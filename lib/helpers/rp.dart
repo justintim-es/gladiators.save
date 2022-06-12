@@ -22,7 +22,7 @@ class Rp {
       List<Propter> propters = [];
       propters.addAll(Gladiator.grab(priorObstructionum.interioreObstructionum.propterDifficultas, p2p.propters));
       List<Transaction> liberTxs = [];
-      liberTxs.add(Transaction(Constantes.txObstructionumPraemium, InterioreTransaction(true, [], [TransactionOutput(aboutconfig!.publicaClavis!, Constantes.obstructionumPraemium)], Utils.randomHex(32))));
+      liberTxs.add(Transaction(Constantes.txObstructionumPraemium, InterioreTransaction(true, [], [TransactionOutput(aboutconfig.publicaClavis!, Constantes.obstructionumPraemium)], Utils.randomHex(32))));
       liberTxs.addAll(Transaction.grab(priorObstructionum.interioreObstructionum.liberDifficultas, p2p.liberTxs));
       List<Transaction> fixumTxs = [];
       fixumTxs.addAll(Transaction.grab(priorObstructionum.interioreObstructionum.fixumDifficultas, p2p.fixumTxs));
