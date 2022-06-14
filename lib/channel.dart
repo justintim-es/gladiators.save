@@ -114,6 +114,7 @@ class GladiatorsChannel extends ApplicationChannel {
     router.route('/transaction-liber').link(() => TransactionLiberController(directory!, p2p!, liberTxIsolates));
     router.route('/transaction-fixum').link(() => TransactionFixumController(directory!, p2p!, fixumTxIsolates));
     router.route('/transaction-expressi').link(() => TransactionExpressiController(p2p!));
+    router.route('/probationem').link(() => ProbationemController(directory!));
     return router;
   }
 }
