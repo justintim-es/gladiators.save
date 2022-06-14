@@ -1,12 +1,16 @@
+import 'dart:io';
+
 import 'package:conduit/conduit.dart';
 import 'package:gladiators/models/exampla.dart';
-
+import 'package:gladiators/models/obstructionum.dart';
+import 'package:gladiators/models/utils.dart';
+import 'package:collection/collection.dart';
 
 class ProbationemController extends ResourceController {
     Directory directory;
     ProbationemController(this.directory);
     @Operation.post()
-    Future<Response> probationem(@Bind.body() Probationem prop) async {
+    Future<Response> probationem(@Bind.body() Probationems prop) async {
       List<Obstructionum> obs = await Utils.getObstructionums(directory);
       if (obs.length == 1) return Response.ok([obs.first.probationem]);
       int start = 0;
