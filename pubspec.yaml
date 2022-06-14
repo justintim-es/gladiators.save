@@ -1,5 +1,17 @@
 name: gladiators
-description: An empty conduit application.
+description: >-
+  The solution on hacking bitcoin with one leading zero!
+  EFECTUS: 
+  Bring 2 teams of public keys into the game to accept liber money that increases the difficulty with 2 leading zeros for the next block, the teams can loose their liber money if their gladiator gets defeaten
+  that can be defended with one byte hexadecimal characters you van buy with burning money as a team to blockhashes and only the highest bid owns the defence. 
+  CONFUSSUS: 
+  Defeat a gladiator if your hash contains the defences, turn your money into stuck which can no longer vanish or be reproduced and decrease the difficulty with one leading zero
+  EXPRESSI:
+  Same as the confussus but easier because you need
+  leading and trailing zeros but all liber txs will be reproduced and expressi can only be on top of an efectus block \n\n
+
+  So even with the difficulty being derived from the amount of undefeaten gladiators you could still replace the chain with a fake chain that contains one efectus two confussus one efectus and so on.
+  So i first thought let's divide the length of the chain by the amount of efectus blocks, but than you could fork the chain with only efectus, so i divide it by the total difficulty and the smaller outcome will be the real chain to me.
 version: 0.0.1
 publish_to: none
 
