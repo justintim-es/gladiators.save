@@ -133,18 +133,19 @@ class PropterInfo {
     'defensio': defensio,
   };
 }
-class Probationems {
-  final List<int> firstIndex;
-  final List<int> lastIndex;
-  Probationems(this.firstIndex, this.lastIndex);
+class Probationems extends Serializable {
+  List<int>? firstIndex;
+  List<int>? lastIndex;
+  Probationems();
 
   Map<String, dynamic> asMap() => {
     'firstIndex': firstIndex,
     'lastIndex': lastIndex
   };
-  Probationems.fromJson(Map<String, dynamic> jsoschon):
-    firstIndex = List<int>.from(jsoschon['firstIndex'] as List<dynamic>),
-    lastIndex = List<int>.from(jsoschon['lastIndex'] as List<dynamic>);
+  void readFromMap(Map<String, dynamic> map) {
+    firstIndex = List<int>.from(map['firstIndex'] as List<dynamic>);
+    lastIndex = List<int>.from(map['lastIndex'] as List<dynamic>);
+  }
 }
 class InvictosGladiator {
   String id;

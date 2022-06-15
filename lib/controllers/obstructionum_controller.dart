@@ -25,23 +25,6 @@ class ObstructionumController extends ResourceController {
         });
       }
     }
-    @Operation.post('probationem')
-    Future<Response> probationem() async {
-      final Probationems prop = Probationems.fromJson(await request!.body.decode());
-      List<Obstructionum> obs = await Utils.getObstructionums(directory);
-      if (obs.length == 1) return Response.ok([obs.first.probationem]);
-      int start = 0;
-      int end = 0;
-      for (int i = 0; i < obs.length; i++) {
-        if (ListEquality().equals(obs[i].interioreObstructionum.obstructionumNumerus, prop.firstIndex)) {
-          start = i;
-        }
-        if (ListEquality().equals(obs[i].interioreObstructionum.obstructionumNumerus, prop.lastIndex)) {
-          end = i;
-        }
-      }
-      return Response.ok(obs.map((o) => o.probationem).toList().getRange(start, end).toList());
-    }
     @Operation.get() 
     Future<Response> prior() async {
       Obstructionum obs = await Utils.priorObstructionum(directory);
