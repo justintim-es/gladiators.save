@@ -1,7 +1,7 @@
 p2pPortus: '8989'
 publicaClavis: "049e7d21e8953ae997b9cccb2c33c8d2be0d8ba3d4b175ab306e683da08f6b58283e5f266b4ae3a4c58f4423dd63ad66c35b502c774688e3fb85adbe101e640d10"
-internumIp: '136.244.87.59'
-externalIp: '136.244.87.59'
+internumIp: '78.141.244.136'
+externalIp: '78.141.244.136'
 novus: false
-directory: 'noscho'
+directory: './root/noscho'
 maxPares: 50
